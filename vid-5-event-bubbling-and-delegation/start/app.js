@@ -1,18 +1,19 @@
 const toggleList = document.getElementById('toggleList');
-// re-use this const:
 const listDiv = document.querySelector('.list');
 const descriptionInput = document.querySelector('input.description');
 const descriptionP = document.querySelector('p.description');
 const descriptionButton = document.querySelector('button.description');
+const listUl = listDiv.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
-const removeItemButton = document.querySelector('button.removeItemButton');
 
 // document.addEventListener('click', (e) => {
 //   console.log(e.target);
 // })
 
+/* Capitalization Behavior
 // the removed and newly attached item has the behavior attached to it:
+
 listDiv.addEventListener('mouseover', (e) => {
   if (e.target.tagName === 'LI') {
     e.target.textContent = e.target.textContent.toUpperCase();
@@ -24,6 +25,16 @@ listDiv.addEventListener('mouseout', (e) => {
     e.target.textContent = e.target.textContent.toLowerCase();
   }
 });
+*/
+
+listUl.addEventListener('click', (e) => {
+  if (e.target.tagName === 'BUTTON') {
+    let li = e.target.parentNode;
+    let ul = li.parentNode;
+    ul.removeChild(li);
+  }
+});
+
 
 
 toggleList.addEventListener('click', () => {
@@ -47,10 +58,4 @@ addItemButton.addEventListener('click', () => {
   li.textContent = addItemInput.value;
   ul.appendChild(li);
   addItemInput.value = '';
-});
-
-removeItemButton.addEventListener('click', () => {
-  let ul = document.getElementsByTagName('ul')[0];
-  let li = document.querySelector('li:last-child');
-  ul.removeChild(li);
 });
