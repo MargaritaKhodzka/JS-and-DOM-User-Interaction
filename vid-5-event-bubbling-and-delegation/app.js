@@ -9,6 +9,12 @@ const addItemButton = document.querySelector('button.addItemButton');
 // attach buttons to existing list items
 const lis = listUl.children;
 
+const firstListItem = listUl.firstElementChild;
+const lastListItem = listUl.lastElementChild;
+
+firstListItem.style.backgroundColor = 'lightskyblue';
+lastListItem.style.backgroundColor = 'lightsteelblue';
+
 const attachListItemButtons = li => {
   let up = document.createElement('button');
   up.className = 'up';
