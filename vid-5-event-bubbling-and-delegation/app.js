@@ -7,12 +7,13 @@ const listUl = listDiv.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
 
-// document.addEventListener('click', (e) => {
-//   console.log(e.target);
-// })
+/*
+document.addEventListener('click', (e) => {
+  console.log(e.target);
+})
+*/
 
 /* Capitalization Behavior
-// the removed and newly attached item has the behavior attached to it:
 
 listDiv.addEventListener('mouseover', (e) => {
   if (e.target.tagName === 'LI') {
@@ -25,13 +26,24 @@ listDiv.addEventListener('mouseout', (e) => {
     e.target.textContent = e.target.textContent.toLowerCase();
   }
 });
+
 */
 
 listUl.addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
-    let li = e.target.parentNode;
-    let ul = li.parentNode;
-    ul.removeChild(li);
+    if (e.target.className === 'remove') {
+      let li = e.target.parentNode;
+      let ul = li.parentNode;
+      ul.removeChild(li);
+    }
+    if (e.target.className === 'up') {
+      let li = e.target.parentNode;
+      let prevLi = li.previousElementSibling;
+      let ul = li.parentNode;
+      if (prevLi) {
+        ul.insertBefore(li, prevLi);
+      }
+    }
   }
 });
 
