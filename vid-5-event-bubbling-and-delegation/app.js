@@ -6,28 +6,30 @@ const descriptionButton = document.querySelector('button.description');
 const listUl = listDiv.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
+// attach buttons to existing list items
+const lis = listUl.children;
 
-/*
-document.addEventListener('click', (e) => {
-  console.log(e.target);
-})
-*/
+const attachListItemButtons = li => {
+  let up = document.createElement('button');
+  up.className = 'up';
+  up.textContent = 'Up';
+  li.appendChild(up);
 
-/* Capitalization Behavior
+  let down = document.createElement('button');
+  down.className = 'down';
+  down.textContent = 'Down';
+  li.appendChild(down);
 
-listDiv.addEventListener('mouseover', (e) => {
-  if (e.target.tagName === 'LI') {
-    e.target.textContent = e.target.textContent.toUpperCase();
-  }
-});
+  let remove = document.createElement('button');
+  remove.className = 'remove';
+  remove.textContent = 'Remove';
+  li.appendChild(remove);
+}
 
-listDiv.addEventListener('mouseout', (e) => {
-  if (e.target.tagName === 'LI') {
-    e.target.textContent = e.target.textContent.toLowerCase();
-  }
-});
-
-*/
+// attach buttons to existing list items
+for (let i = 0; i < lis.length; i++) {
+  attachListItemButtons(lis[i]);
+}
 
 listUl.addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
@@ -55,8 +57,6 @@ listUl.addEventListener('click', (e) => {
   }
 });
 
-
-
 toggleList.addEventListener('click', () => {
   if (listDiv.style.display == 'none') {
     toggleList.textContent = 'Hide list';
@@ -76,6 +76,8 @@ addItemButton.addEventListener('click', () => {
   let ul = document.getElementsByTagName('ul')[0];
   let li = document.createElement('li');
   li.textContent = addItemInput.value;
+  // buttons will be attached to new list items
+  attachListItemButtons(li);
   ul.appendChild(li);
   addItemInput.value = '';
 });
